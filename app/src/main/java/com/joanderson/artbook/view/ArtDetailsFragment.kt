@@ -4,12 +4,37 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import com.joanderson.artbook.R
+import com.joanderson.artbook.databinding.FragmentArtDetailsBinding
+import com.joanderson.artbook.databinding.FragmentArtsBinding
 
 class ArtDetailsFragment : Fragment(R.layout.fragment_art_details){
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return super.onCreateView(inflater, container, savedInstanceState)
+    private var fragmentBinding : FragmentArtDetailsBinding? = null
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        val binding = FragmentArtDetailsBinding.bind(view)
+        fragmentBinding = binding
+        binding.ivArt.setOnClickListener {
+            findNavController().navigate(ArtDetailsFragmentDirections.actionArtDetailsFragmentToImageApiFragment())
+        }
+
+        val callback = object : OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+                findNavController().popBackStack()
+            }
+        }
+
+        requireActivity().onBackPressedDispatcher.addCallback(callback)
+    }
+
+    override fun onDestroy() {
+        fragmentBinding = null
+        super.onDestroy()
     }
 }

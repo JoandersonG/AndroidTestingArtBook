@@ -1,15 +1,12 @@
 package com.joanderson.artbook.view
 
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.joanderson.artbook.R
 import com.joanderson.artbook.databinding.FragmentArtDetailsBinding
-import com.joanderson.artbook.databinding.FragmentArtsBinding
 
 class ArtDetailsFragment : Fragment(R.layout.fragment_art_details){
 

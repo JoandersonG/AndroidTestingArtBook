@@ -39,7 +39,7 @@ class ImageRecyclerAdapter @Inject constructor(
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ImageViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.art_row, parent, false)
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.search_row, parent, false)
         return ImageViewHolder(view)
     }
 
@@ -48,11 +48,11 @@ class ImageRecyclerAdapter @Inject constructor(
     }
 
     override fun onBindViewHolder(holder: ImageViewHolder, position: Int) {
-        val imageView = holder.itemView.findViewById<ImageView>(R.id.ivArtRow)
+        val imageView = holder.itemView.findViewById<ImageView>(R.id.iv_search_row)
         val url = images[position]
         holder.itemView.apply {
             glide.load(url).into(imageView)
-            setOnItemClickListener {
+            setOnClickListener {
                 onItemClickListener?.let {
                     it(url)
                 }
